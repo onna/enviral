@@ -23,7 +23,7 @@ First, define a JSON Schema file(`env-schema.json`):
             "title": "AMQP host"
         }
     },
-    "required": "db_uri"
+    "required": ["db_uri"]
 }
 ```
 
