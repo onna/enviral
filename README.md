@@ -1,6 +1,7 @@
-# Enviral: JSON Schema Application Environment Configuration and Validation
+# JSON Schema Application Environment Configuration and Validation
 
-`Enviral` allows you to validate application environment configuration.
+This package allows you to validate application environment variables that are
+used for configuration with JSON schemas.
 
 It is extremely useful to use with Docker/kubernetes where you might have
 quite a bit of configuration originating from environment variables; however,
@@ -52,7 +53,7 @@ enviral.validate_object({"db_uri": "postgresql://localhost:5432"}, 'env-schema.j
 Or command line validate:
 
 ```bash
-enviral env-schema.json package:validation-file.json
+json-schema-env-validator env-schema.json package:validation-file.json
 ```
 
 ## Development

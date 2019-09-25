@@ -25,5 +25,7 @@ setup(
     packages=["enviral"],
     install_requires=["jsonschema"],
     extras_require={},
-    entry_points={"console_scripts": ["enviral=enviral.command:main"]},
+    entry_points={
+        "console_scripts": ["json-schema-env-validator=enviral.command:main"]
+    },
 )
