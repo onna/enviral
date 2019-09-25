@@ -2,7 +2,7 @@ import enviral
 import os
 
 
-def test_get_setting_from_env():
+def test_get_setting_from_env(env):
     os.environ["FOO"] = "bar"
     settings = enviral.serialize(
         {"type": "object", "properties": {"foo": {"type": "string"}}}
@@ -22,7 +22,7 @@ def test_get_setting_from_env_with_prefix(env):
     assert settings["foo"] == "bar"
 
 
-def test_convert_int_setting_from_env():
+def test_convert_int_setting_from_env(env):
     os.environ["FOO"] = "2"
     settings = enviral.serialize(
         {"type": "object", "properties": {"foo": {"type": "number"}}}
@@ -30,7 +30,7 @@ def test_convert_int_setting_from_env():
     assert settings["foo"] == 2
 
 
-def test_convert_object_setting_from_env():
+def test_convert_object_setting_from_env(env):
     os.environ["FOO"] = '{"foo": "bar"}'
     settings = enviral.serialize(
         {
@@ -43,7 +43,7 @@ def test_convert_object_setting_from_env():
     assert settings["foo"] == {"foo": "bar"}
 
 
-def test_convert_list_setting_from_env():
+def test_convert_list_setting_from_env(env):
     os.environ["FOO"] = '["foo", "bar"]'
     settings = enviral.serialize(
         {
@@ -54,7 +54,7 @@ def test_convert_list_setting_from_env():
     assert settings["foo"] == ["foo", "bar"]
 
 
-def test_convert_bool_setting_from_env():
+def test_convert_bool_setting_from_env(env):
     for setting in ("1", "true", "TRUE", "y", "YES"):
         os.environ["FOO"] = setting
         settings = enviral.serialize(
@@ -70,7 +70,7 @@ def test_convert_bool_setting_from_env():
         assert settings["foo"] is False
 
 
-def test_get_json_from_module_file():
+def test_get_json_from_module_file(env):
     os.environ["FOOBAR"] = "bar"
     settings = enviral.serialize("enviral:test-env-schema.json")
     assert settings["foobar"] == "bar"

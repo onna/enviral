@@ -6,7 +6,7 @@ import pytest
 import enviral
 
 
-def test_validate_from_env():
+def test_validate_from_env(env):
     os.environ["FOO"] = "bar"
     schema = {
         "type": "object",
@@ -20,7 +20,7 @@ def test_validate_from_env():
     enviral.validate_env(schema)
 
 
-def test_validate_int_from_env():
+def test_validate_int_from_env(env):
     os.environ["FOO"] = "bar"
     schema = {"type": "object", "properties": {"foo": {"type": "number"}}}
     with pytest.raises(jsonschema.exceptions.ValidationError):
