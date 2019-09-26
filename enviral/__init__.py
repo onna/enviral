@@ -1,8 +1,26 @@
-import typing
-import os
 import json
-import jsonschema
+import os
 import pathlib
+import typing
+
+import jsonschema
+
+
+def extend_with_default(validator_class):
+    validate_properties = validator_class.VALIDATORS["properties"]
+
+    def set_defaults(validator, properties, instance, schema):
+        for property, subschema in properties.items():
+            if "default" in subschema:
+                instance.setdefault(property, subschema["default"])
+
+        for error in validate_properties(validator, properties, instance, schema):
+            yield error
+
+    return jsonschema.validators.extend(validator_class, {"properties": set_defaults})
+
+
+DefaultValidatingDraft7Validator = extend_with_default(jsonschema.Draft7Validator)
 
 
 def resolve_dotted_name(name: str):
@@ -95,6 +113,13 @@ def serialize(
                 if schema_type == "boolean":
                     value = value.lower() in ("1", "y", "yes", "true")
                 result[key] = value
+
+        # run the validator here because we want defaults filled
+        try:
+            validator = DefaultValidatingDraft7Validator(schema)
+            validator.validate(result)
+        except jsonschema.exceptions.ValidationError:
+            pass
     return result
 
 
@@ -107,5 +132,6 @@ def validate_env(*schemas: str, prefix="") -> typing.Dict[str, typing.Any]:
 def validate_object(obj, *schemas: str) -> typing.Dict[str, typing.Any]:
     for schema in schemas:
         schema = _get_schema(schema)
-        jsonschema.validate(instance=obj, schema=schema)
+        validator = DefaultValidatingDraft7Validator(schema)
+        validator.validate(obj)
     return obj

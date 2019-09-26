@@ -6,7 +6,7 @@ import os
 _dir = os.path.dirname(os.path.realpath(__file__))
 
 setup(
-    name="enviral",
+    name="json-schema-env-validator",
     version="1.0.0",
     description="",
     long_description_content_type="text/markdown",

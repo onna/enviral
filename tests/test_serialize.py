@@ -74,3 +74,17 @@ def test_get_json_from_module_file(env):
     os.environ["FOOBAR"] = "bar"
     settings = enviral.serialize("enviral:test-env-schema.json")
     assert settings["foobar"] == "bar"
+
+
+def test_fill_default_json_schema_value(env):
+    os.environ["FOO"] = "bar"
+    settings = enviral.serialize(
+        {
+            "type": "object",
+            "properties": {
+                "foo": {"type": "string"},
+                "bar": {"type": "string", "default": "foo"},
+            },
+        }
+    )
+    assert settings == {"foo": "bar", "bar": "foo"}
