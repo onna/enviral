@@ -88,3 +88,10 @@ def test_fill_default_json_schema_value(env):
         }
     )
     assert settings == {"foo": "bar", "bar": "foo"}
+
+
+def test_get_env_case_insensitive(env):
+    os.environ["FOO"] = "Bar"
+    assert enviral.get_env("foo") == "Bar"
+    assert enviral.get_env("Foo") == "Bar"
+    assert enviral.get_env("FOO") == "Bar"

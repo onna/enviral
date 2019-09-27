@@ -1,7 +1,7 @@
 1.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add `CaseInsensitiveDict` type and `get_env` function
 
 
 1.0.1 (2019-09-26)

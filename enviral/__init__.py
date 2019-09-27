@@ -5,6 +5,8 @@ import typing
 
 import jsonschema
 
+from .structures import CaseInsensitiveDict
+
 
 def extend_with_default(validator_class):
     validate_properties = validator_class.VALIDATORS["properties"]
@@ -135,3 +137,12 @@ def validate_object(obj, *schemas: str) -> typing.Dict[str, typing.Any]:
         validator = DefaultValidatingDraft7Validator(schema)
         validator.validate(obj)
     return obj
+
+
+_environ = CaseInsensitiveDict()
+
+
+def get_env(name, default=None):
+    if len(_environ) == 0:
+        _environ.update(os.environ)
+    return _environ.get(name, default)
