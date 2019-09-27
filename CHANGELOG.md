@@ -1,4 +1,4 @@
-1.0.2 (unreleased)
+1.0.2 (2019-09-27)
 ------------------
 
 - Add `CaseInsensitiveDict` type and `get_env` function
