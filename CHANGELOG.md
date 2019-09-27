@@ -1,8 +1,10 @@
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix command
 
 
 1.0.0 (2019-09-26)
 ------------------
+
+- initial
