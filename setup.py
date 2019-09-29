@@ -7,7 +7,7 @@ _dir = os.path.dirname(os.path.realpath(__file__))
 
 setup(
     name="json-schema-env-validator",
-    version="1.0.3.dev0",
+    version="1.0.3",
     description="",
     long_description_content_type="text/markdown",
     long_description=open(os.path.join(_dir, "README.md")).read(),
