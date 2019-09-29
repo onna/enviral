@@ -1,7 +1,7 @@
-import collections
+import collections.abc
 
 
-class CaseInsensitiveDict(collections.MutableMapping):
+class CaseInsensitiveDict(collections.abc.MutableMapping):
     """
     XXX pulled out of requests library!
     A case-insensitive ``dict``-like object.

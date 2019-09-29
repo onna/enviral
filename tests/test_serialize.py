@@ -95,3 +95,14 @@ def test_get_env_case_insensitive(env):
     assert enviral.get_env("foo") == "Bar"
     assert enviral.get_env("Foo") == "Bar"
     assert enviral.get_env("FOO") == "Bar"
+
+
+def test_array_from_comma_values(env):
+    os.environ["FOO"] = "foo,bar"
+    settings = enviral.serialize(
+        {
+            "type": "object",
+            "properties": {"foo": {"type": "array", "items": {"type": "string"}}},
+        }
+    )
+    assert settings == {"foo": ["foo", "bar"]}

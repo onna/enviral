@@ -1,7 +1,7 @@
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Handle error loading json env variable
 
 
 1.0.2 (2019-09-27)

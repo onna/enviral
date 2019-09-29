@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import pathlib
 import typing
@@ -6,6 +7,9 @@ import typing
 import jsonschema
 
 from .structures import CaseInsensitiveDict
+
+
+logger = logging.getLogger("enviral")
 
 
 def extend_with_default(validator_class):
@@ -111,7 +115,15 @@ def serialize(
                         # allow validation to catch properly
                         pass
                 if schema_type in ("object", "array"):
-                    value = json.loads(value)
+                    if value[0] in ("[", "{"):
+                        try:
+                            value = json.loads(value)
+                        except json.decoder.JSONDecodeError:
+                            logger.warning(
+                                f"Error attempting to load {key} with value {value}"
+                            )
+                    elif schema_type == "array" and "," in value:
+                        value = [v.strip() for v in value.split(",")]
                 if schema_type == "boolean":
                     value = value.lower() in ("1", "y", "yes", "true")
                 result[key] = value
