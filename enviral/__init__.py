@@ -122,8 +122,8 @@ def serialize(
                             logger.warning(
                                 f"Error attempting to load {key} with value {value}"
                             )
-                    elif schema_type == "array" and "," in value:
-                        value = [v.strip() for v in value.split(",") if v]
+                    elif schema_type == "array":
+                        value = [v.strip() for v in value.split(",")]
                 if schema_type == "boolean":
                     value = value.lower() in ("1", "y", "yes", "true")
                 result[key] = value

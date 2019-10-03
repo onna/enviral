@@ -109,7 +109,7 @@ def test_array_from_comma_values(env):
 
 
 def test_array_from_comma_single_value(env):
-    os.environ["FOO"] = "foo,"
+    os.environ["FOO"] = "foo"
     settings = enviral.serialize(
         {
             "type": "object",

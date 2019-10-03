@@ -1,13 +1,8 @@
-1.0.5 (unreleased)
-------------------
-
-- Update serialize to support single item in array
-
 1.0.4 (unreleased)
 ------------------
 
 - Nothing changed yet.
-
+- Update serialize to support single item in array
 
 1.0.3 (2019-09-29)
 ------------------
