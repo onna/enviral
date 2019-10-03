@@ -1,3 +1,8 @@
+1.0.5 (unreleased)
+------------------
+
+- Update serialize to support single item in array
+
 1.0.4 (unreleased)
 ------------------
 
