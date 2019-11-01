@@ -25,6 +25,7 @@ setup(
     packages=["enviral"],
     install_requires=["jsonschema"],
     extras_require={},
+    package_data={"": ["*.txt", "*.rst"], "enviral": ["py.typed"]},
     entry_points={
         "console_scripts": ["json-schema-env-validator=enviral.command:main"]
     },
