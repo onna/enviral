@@ -114,6 +114,13 @@ def serialize(
                         # we attempt but ignore error
                         # allow validation to catch properly
                         pass
+                if schema_type == "integer":
+                    try:
+                        value = int(value)
+                    except ValueError:
+                        # we attempt but ignore error
+                        # allow validation to catch properly
+                        pass
                 if schema_type in ("object", "array"):
                     if value[0] in ("[", "{"):
                         try:

@@ -22,12 +22,22 @@ def test_get_setting_from_env_with_prefix(env):
     assert settings["foo"] == "bar"
 
 
+
+def test_convert_number_setting_from_env(env):
+    for number, conversion in (("2", int), ("9.85", float)):
+        os.environ["FOO"] = number
+        settings = enviral.serialize(
+            {"type": "object", "properties": {"foo": {"type": "number"}}}
+        )
+        assert settings["foo"] == conversion(number)
+
+
 def test_convert_int_setting_from_env(env):
-    os.environ["FOO"] = "2"
+    os.environ["FOO"] = "250"
     settings = enviral.serialize(
-        {"type": "object", "properties": {"foo": {"type": "number"}}}
+        {"type": "object", "properties": {"foo": {"type": "integer"}}}
     )
-    assert settings["foo"] == 2
+    assert settings["foo"] == 250
 
 
 def test_convert_object_setting_from_env(env):

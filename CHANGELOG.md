@@ -1,8 +1,7 @@
 1.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Support integers schema type [lferran]
 
 1.0.5 (2019-11-01)
 ------------------
