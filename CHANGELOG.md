@@ -1,4 +1,4 @@
-1.0.6 (unreleased)
+1.0.6 (2020-10-29)
 ------------------
 
 - Support integers schema type [lferran]
